@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+  <identifier>CrystalBall</identifier>
+  <version>1.0.0.0</version>
+  <dependencies />
+  <incompatibleWith />
+  <loadBefore />
+  <loadAfter />
+  <manifestUri>https://raw.githubusercontent.com/PickledMonkey/RimWorldMod_CrystalBall/master/About/Manifest.xml</manifestUri>
+  <downloadUri>https://github.com/PickledMonkey/RimWorldMod_CrystalBall/releases/download/v1.1/Crystalball.dll</downloadUri>
+</Manifest>
