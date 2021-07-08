@@ -112,7 +112,7 @@ namespace CrystalBall
                 Log.Message("Firing from WarnedIncidents");
 #endif
 
-                if (fi.def.Worker.CanFireNow(fi.parms, true))
+                if (fi.def.Worker.CanFireNow(fi.parms))
                 {
                     if (fi.def.Worker.TryExecute(fi.parms))
                     {
