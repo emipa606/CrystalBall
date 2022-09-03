@@ -1,6 +1,5 @@
-﻿namespace Crystalball
+﻿namespace Crystalball;
+
+public class Crystalball
 {
-    public class Crystalball
-    {
-    }
 }

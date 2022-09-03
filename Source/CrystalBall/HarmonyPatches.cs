@@ -3,17 +3,17 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace CrystalBall
-{
-    [StaticConstructorOnStartup]
-    public static class HarmonyPatches
-    {
-        // ReSharper disable once InconsistentNaming
-        private static readonly Type patchType = typeof(HarmonyPatches);
+namespace CrystalBall;
 
-        static HarmonyPatches()
-        {
-            var harmony = new Harmony("rimworld.crystallball.main");
+[StaticConstructorOnStartup]
+public static class HarmonyPatches
+{
+    // ReSharper disable once InconsistentNaming
+    private static readonly Type patchType = typeof(HarmonyPatches);
+
+    static HarmonyPatches()
+    {
+        var harmony = new Harmony("rimworld.crystallball.main");
 
 #if DEBUG
             Log.Message("Loading Harmony Patches For CrystalBall");
@@ -29,20 +29,20 @@ namespace CrystalBall
                 postfix: new HarmonyMethod(methodType: patchType, methodName: nameof(TryExecutePostfix))
             );
 #endif
-            harmony.Patch(
-                AccessTools.Method(typeof(Storyteller), nameof(Storyteller.TryFire)),
-                new HarmonyMethod(patchType, nameof(TryFirePrefix)),
-                new HarmonyMethod(patchType, nameof(TryFirePostfix))
-            );
+        harmony.Patch(
+            AccessTools.Method(typeof(Storyteller), nameof(Storyteller.TryFire)),
+            new HarmonyMethod(patchType, nameof(TryFirePrefix)),
+            new HarmonyMethod(patchType, nameof(TryFirePostfix))
+        );
 
-            harmony.Patch(
-                AccessTools.Method(typeof(Storyteller), nameof(Storyteller.StorytellerTick)),
-                new HarmonyMethod(patchType, nameof(StoryTellerTickPrefix)),
-                new HarmonyMethod(patchType, nameof(StoryTellerTickPostfix))
-            );
+        harmony.Patch(
+            AccessTools.Method(typeof(Storyteller), nameof(Storyteller.StorytellerTick)),
+            new HarmonyMethod(patchType, nameof(StoryTellerTickPrefix)),
+            new HarmonyMethod(patchType, nameof(StoryTellerTickPostfix))
+        );
 
-            //harmony.PatchAll();
-        }
+        //harmony.PatchAll();
+    }
 
 #if DEBUG
         public static bool CanFireNowPrefix(IncidentParms parms, bool forced, ref bool __result, IncidentWorker __instance)
@@ -82,9 +82,9 @@ namespace CrystalBall
         }
 #endif
 
-        public static bool TryFirePrefix(FiringIncident fi, ref bool __result, Storyteller __instance)
-        {
-            var warnedIncidentQueue = Find.World.GetComponent<WarnedIncidentQueueWorldComponent>();
+    public static bool TryFirePrefix(FiringIncident fi, ref bool __result, Storyteller __instance)
+    {
+        var warnedIncidentQueue = Find.World.GetComponent<WarnedIncidentQueueWorldComponent>();
 
 #if DEBUG
             string debugStr =
@@ -93,19 +93,21 @@ namespace CrystalBall
 #endif
 
 
-            if (fi.parms == null)
-            {
+        if (fi.parms == null)
+        {
 #if DEBUG
                 Log.Message("Parameters are null for some reason");
 #endif
-            }
+        }
 
-            if (!string.IsNullOrEmpty(fi.parms?.questTag))
-            {
-                // Dont stop any quests
-                return true;
-            }
+        if (!string.IsNullOrEmpty(fi.parms?.questTag))
+        {
+            // Dont stop any quests
+            return true;
+        }
 
+        try
+        {
             if (warnedIncidentQueue.IsFiringEvents())
             {
 #if DEBUG
@@ -167,28 +169,32 @@ namespace CrystalBall
             Log.Message(String.Format("Continuing Execution = {0}", continueExecution.ToString()));
 #endif
         }
-
-        public static bool TryFirePostfix(bool __result, FiringIncident fi, Storyteller __instance)
+        catch
         {
+            return true;
+        }
+    }
+
+    public static bool TryFirePostfix(bool __result, FiringIncident fi, Storyteller __instance)
+    {
 #if DEBUG
             string debugStr =
  String.Format("TryFirePostfix: Type={0}, Result={1}", fi.def.workerClass, __result.ToString());
             Log.Message(debugStr);
 #endif
-            return __result;
-        }
+        return __result;
+    }
 
-        public static bool StoryTellerTickPrefix(Storyteller __instance)
-        {
-            var warnedIncidentQueue = Find.World.GetComponent<WarnedIncidentQueueWorldComponent>();
-            warnedIncidentQueue.WarnedIncidentQueueTick();
+    public static bool StoryTellerTickPrefix(Storyteller __instance)
+    {
+        var warnedIncidentQueue = Find.World.GetComponent<WarnedIncidentQueueWorldComponent>();
+        warnedIncidentQueue.WarnedIncidentQueueTick();
 
-            return true;
-        }
+        return true;
+    }
 
-        public static void StoryTellerTickPostfix(Storyteller __instance)
-        {
-            // Do Nothing for now. Just a placeholder.
-        }
+    public static void StoryTellerTickPostfix(Storyteller __instance)
+    {
+        // Do Nothing for now. Just a placeholder.
     }
 }
