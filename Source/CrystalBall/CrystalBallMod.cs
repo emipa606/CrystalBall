@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Mlie;
+using UnityEngine;
 using Verse;
 
 namespace Crystalball;
 
 public class CrystalBallMod : Mod
 {
+    private static string currentVersion;
     private readonly CrystalBallSettings settings;
 
     public CrystalBallMod(ModContentPack content) : base(content)
@@ -12,6 +14,8 @@ public class CrystalBallMod : Mod
         CrystalBallStatic.currMod = this;
 
         settings = GetSettings<CrystalBallSettings>();
+        currentVersion =
+            VersionFromManifest.GetVersionFromModMetaData(ModLister.GetActiveModWithIdentifier("Mlie.CrystalBall"));
 #if DEBUG
             Log.Message("CrystalBallMode Initialized");
 #endif
@@ -23,18 +27,25 @@ public class CrystalBallMod : Mod
         var listingStandard = new Listing_Standard();
         listingStandard.Begin(inRect);
 
-        listingStandard.Label("Median Delay Time");
+        listingStandard.Label("CB.Median".Translate());
         listingStandard.IntEntry(ref settings.medianDelayTime, ref settings.medianDelayEntryBuffer);
 
-        listingStandard.Label("Delay Time Fudge Window");
+        listingStandard.Label("CB.DelayTime".Translate());
         listingStandard.IntEntry(ref settings.delayTimeFudgeWindow, ref settings.fudgeWindowEntryBuffer);
 
-        listingStandard.Label("Time For Crystal Balls to Recharge");
+        listingStandard.Label("CB.RechargeTime".Translate());
         listingStandard.IntEntry(ref settings.crystalBallRechargeTime, ref settings.rechargeTimeEntryBuffer);
 
-        listingStandard.Label("Multipler for the speed to scry a crystal ball");
+        listingStandard.Label("CB.Multiplyer".Translate());
         listingStandard.TextFieldNumeric(ref settings.scrySpeedFactor, ref settings.scrySpeedEntryBuffer, 0.0f,
             10.0f);
+        if (currentVersion != null)
+        {
+            listingStandard.Gap();
+            GUI.contentColor = Color.gray;
+            listingStandard.Label("CB.ModVersion".Translate(currentVersion));
+            GUI.contentColor = Color.white;
+        }
 
         listingStandard.End();
 

@@ -11,12 +11,7 @@ internal class JobDriver_ScryCrystalBall : JobDriver
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
         var scryAbility = pawn.GetStatValue(ModDefs.StatDef_Scry);
-        if (scryAbility > 0)
-        {
-            return pawn.Reserve(crystalBallTable, job, 1, -1, null, errorOnFailed);
-        }
-
-        return false;
+        return scryAbility > 0 && pawn.Reserve(crystalBallTable, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -41,12 +36,7 @@ internal class JobDriver_ScryCrystalBall : JobDriver
         scry.WithProgressBar(TargetIndex.A, delegate
         {
             var crystalBall = crystalBallTable;
-            if (crystalBall == null)
-            {
-                return 0f;
-            }
-
-            return crystalBall.GetCurrentProgress();
+            return crystalBall?.GetCurrentProgress() ?? 0f;
         });
         scry.defaultCompleteMode = ToilCompleteMode.Delay;
         scry.defaultDuration = 500;

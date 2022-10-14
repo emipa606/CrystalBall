@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <!-- ITab titles -->
-  <TabPredictions>Predictions</TabPredictions>
+  <CB.TabPredictions>Predictions</CB.TabPredictions>
+  <CB.Median>Median Delay Time</CB.Median>
+  <CB.ModVersion>Installed mod-version: {0}</CB.ModVersion>
+  <CB.DelayTime>Delay Time Fudge Window</CB.DelayTime>
+  <CB.RechargeTime>Time For Crystal Balls to Recharge</CB.RechargeTime>
+  <CB.Multiplyer>Multipler for the speed to scry a crystal ball</CB.Multiplyer>
 </LanguageData>

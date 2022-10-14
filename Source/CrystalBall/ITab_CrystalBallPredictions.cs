@@ -28,7 +28,7 @@ internal class ITab_CrystalBallPredictions : ITab
     public ITab_CrystalBallPredictions()
     {
         size = new Vector2(460f, 450f);
-        labelKey = "TabPredictions";
+        labelKey = "CB.TabPredictions";
         tutorTag = "Predictions";
     }
 
