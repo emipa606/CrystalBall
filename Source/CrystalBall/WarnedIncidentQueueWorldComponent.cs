@@ -17,7 +17,7 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
     private readonly Dictionary<string, int> specialIncidents = new Dictionary<string, int>();
 
     private bool isFiringEvents;
-    private List<QueuedIncident> knownIncidents = new List<QueuedIncident>();
+    private List<QueuedIncident> knownIncidents = [];
 
     private IncidentQueue warnedIncidents = new IncidentQueue();
 
@@ -123,7 +123,7 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
 
     private void GetEventsInQueue(out List<QueuedIncident> events)
     {
-        events = new List<QueuedIncident>();
+        events = [];
 
         foreach (QueuedIncident qi in warnedIncidents)
         {

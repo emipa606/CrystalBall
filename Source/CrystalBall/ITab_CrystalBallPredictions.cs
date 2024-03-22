@@ -35,7 +35,7 @@ internal class ITab_CrystalBallPredictions : ITab
     protected override void FillTab()
     {
         Text.Font = GameFont.Small;
-        var rect = new Rect(0f, 20f, size.x, size.y - 20f).ContractedBy(10f);
+        var rect = new Rect(0f, TopPadding, size.x, size.y - TopPadding).ContractedBy(10f);
         var position = new Rect(rect.x, rect.y, rect.width, rect.height);
         GUI.BeginGroup(position);
 

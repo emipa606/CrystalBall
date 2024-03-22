@@ -15,7 +15,7 @@ public class CrystalBallMod : Mod
 
         settings = GetSettings<CrystalBallSettings>();
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(ModLister.GetActiveModWithIdentifier("Mlie.CrystalBall"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
 #if DEBUG
             Log.Message("CrystalBallMode Initialized");
 #endif
