@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: use crystal balls to predict the future -->
+  <WorkGiverDef_ScryCrystallBall.label>use crystal balls to predict the future</WorkGiverDef_ScryCrystallBall.label>
+  <!-- EN: scrying at -->
+  <WorkGiverDef_ScryCrystallBall.gerund>scrying at</WorkGiverDef_ScryCrystallBall.gerund>
+  <!-- EN: scry -->
+  <WorkGiverDef_ScryCrystallBall.verb>scry</WorkGiverDef_ScryCrystallBall.verb>
+</LanguageData>

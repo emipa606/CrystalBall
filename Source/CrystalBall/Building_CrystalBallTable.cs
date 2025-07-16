@@ -43,9 +43,6 @@ public class Building_CrystalBallTable : Building
 
         if (!WarnedIncidentQueueWorldComponent.warningsActivated)
         {
-#if DEBUG
-                Log.Message("Activating the prediction queue.");
-#endif
             WarnedIncidentQueueWorldComponent.warningsActivated =
                 true; //One time flag, so incidents behave as normal if the crystal ball is never used.
         }
@@ -54,7 +51,7 @@ public class Building_CrystalBallTable : Building
         {
             if (scryingAbility > 0.0f)
             {
-                var progressTick = scryWorkTickAmount * scryingAbility * settings.scrySpeedFactor;
+                var progressTick = scryWorkTickAmount * scryingAbility * settings.ScrySpeedFactor;
                 progress += progressTick;
 
                 var tickFactor = progressTick / scryWorkAmount;
@@ -71,13 +68,9 @@ public class Building_CrystalBallTable : Building
         }
 
         var currTime = Find.TickManager.TicksGame;
-        rechargedTick = currTime + settings.crystalBallRechargeTime;
+        rechargedTick = currTime + settings.CrystalBallRechargeTime;
         recharged = false;
         progress = 0.0f;
-
-#if DEBUG
-                Log.Message(String.Format("Scry complete ability={0}, num={1}", scryingAbility, predictionCount));
-#endif
         //perform predictions
         var warnedIncidentQueue = Find.World.GetComponent<WarnedIncidentQueueWorldComponent>();
         warnedIncidentQueue.PredictEvents(accumulatedScryAbility, (int)accumulatedPredictionCount);
@@ -86,7 +79,7 @@ public class Building_CrystalBallTable : Building
         accumulatedPredictionCount = 0.0f;
     }
 
-    public bool isReadyForScrying()
+    public bool IsReadyForScrying()
     {
         return recharged;
     }
@@ -94,8 +87,6 @@ public class Building_CrystalBallTable : Building
     public override void TickRare()
     {
         base.TickRare(); //Make sure any components are ticked if needed.
-
-        //Log.Message(String.Format("Crystal Ball Recharged = {0}, CurrTick= {1}, RechargeTick={2}, Progress={3}", recharged.ToString(), Find.TickManager.TicksGame, rechargedTick, progress.ToString()));
 
         if (recharged)
         {
@@ -118,15 +109,15 @@ public class Building_CrystalBallTable : Building
         {
             var ticksLeft = rechargedTick - Find.TickManager.TicksGame;
             stringBuilder.AppendInNewLine(
-                $"Crystal ball is recharging psychic energy: {ticksLeft.ToStringTicksToPeriod(true, true, false, false)} until complete.");
+                "CB.RechargingPeriod".Translate(ticksLeft.ToStringTicksToPeriod(true, true, false, false)));
         }
         else if (progress < 1.0f)
         {
-            stringBuilder.AppendInNewLine("Crystal ball is recharged and ready for use.");
+            stringBuilder.AppendInNewLine("CB.Ready".Translate());
         }
         else
         {
-            stringBuilder.AppendInNewLine($"Progress scrying into the future: {(int)progress}%");
+            stringBuilder.AppendInNewLine("CB.Process".Translate((int)progress));
         }
 
         return stringBuilder.ToString();
@@ -149,12 +140,11 @@ public class Building_CrystalBallTable : Building
 
         if (scryAbility < 0.1f) //Make sure this number matches the work giver check
         {
-            yield return new FloatMenuOption("Cannot use. Not enough intellectual and psychic sensitivity.",
-                null);
+            yield return new FloatMenuOption("CB.NoSensitivity".Translate(), null);
         }
         else if (!recharged)
         {
-            yield return new FloatMenuOption("Cannot use. Still recharging.", null);
+            yield return new FloatMenuOption("CB.NotCharged".Translate(), null);
         }
     }
 }

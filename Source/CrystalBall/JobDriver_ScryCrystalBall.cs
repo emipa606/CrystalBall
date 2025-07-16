@@ -19,7 +19,7 @@ internal class JobDriver_ScryCrystalBall : JobDriver
         this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
         var scry = new Toil();
-        scry.tickAction = delegate
+        scry.tickIntervalAction = delegate(int delta)
         {
             var actor = scry.actor;
             var scryAbility = actor.GetStatValue(ModDefs.StatDef_Scry);
@@ -29,7 +29,7 @@ internal class JobDriver_ScryCrystalBall : JobDriver
             crystalBall.PerformScryWork(scryAbility, predictionCount);
 
             actor.skills.Learn(SkillDefOf.Intellectual, 0.01f);
-            actor.GainComfortFromCellIfPossible(true);
+            actor.GainComfortFromCellIfPossible(delta, true);
         };
         scry.FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
         scry.WithEffect(ModDefs.EffecterDef_Scry, TargetIndex.A);

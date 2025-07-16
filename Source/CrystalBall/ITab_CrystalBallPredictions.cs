@@ -17,9 +17,9 @@ internal class ITab_CrystalBallPredictions : ITab
 
     private const float StandardLineHeight = 22f;
 
-    public static readonly Color ThingLabelColor = new Color(0.9f, 0.9f, 0.9f, 1f);
+    public static readonly Color ThingLabelColor = new(0.9f, 0.9f, 0.9f, 1f);
 
-    public static readonly Color HighlightColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+    public static readonly Color HighlightColor = new(0.5f, 0.5f, 0.5f, 1f);
     private Vector2 scrollPosition = Vector2.zero;
 
     private float scrollViewHeight;

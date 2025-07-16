@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Scry crystal balls to predict the future. -->
+  <WorkTypeDef_Scry.description>Scry crystal balls to predict the future.</WorkTypeDef_Scry.description>
+  <!-- EN: scrying -->
+  <WorkTypeDef_Scry.gerundLabel>scrying</WorkTypeDef_Scry.gerundLabel>
+  <!-- EN: Scry -->
+  <WorkTypeDef_Scry.labelShort>Scry</WorkTypeDef_Scry.labelShort>
+  <!-- EN: Scryer -->
+  <WorkTypeDef_Scry.pawnLabel>Scryer</WorkTypeDef_Scry.pawnLabel>
+  <!-- EN: Scry -->
+  <WorkTypeDef_Scry.verb>Scry</WorkTypeDef_Scry.verb>
+</LanguageData>

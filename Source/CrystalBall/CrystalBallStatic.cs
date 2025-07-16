@@ -9,8 +9,5 @@ public static class CrystalBallStatic
 
     static CrystalBallStatic() //constructor is called before anything is loaded in
     {
-#if DEBUG
-            Log.Message("CrystalBallStatic Initialized");
-#endif
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Crystalball;
 using RimWorld;
@@ -14,12 +13,12 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
 
     public static bool warningsActivated;
 
-    private readonly Dictionary<string, int> specialIncidents = new Dictionary<string, int>();
+    private readonly Dictionary<string, int> specialIncidents = new();
 
     private bool isFiringEvents;
     private List<QueuedIncident> knownIncidents = [];
 
-    private IncidentQueue warnedIncidents = new IncidentQueue();
+    private IncidentQueue warnedIncidents = new();
 
 
     public WarnedIncidentQueueWorldComponent(World world) : base(world)
@@ -35,19 +34,14 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
 
     public override void ExposeData()
     {
-        Scribe_Deep.Look(ref warnedIncidents, "warnedIncidents", Array.Empty<object>());
-        Scribe_Collections.Look(ref knownIncidents, "knownIncidents", LookMode.Deep, Array.Empty<object>());
+        Scribe_Deep.Look(ref warnedIncidents, "warnedIncidents");
+        Scribe_Collections.Look(ref knownIncidents, "knownIncidents", LookMode.Deep);
         Scribe_Values.Look(ref warningsActivated, "warningsActivated");
     }
 
-    private bool AddKnownIncident(QueuedIncident qi)
+    private bool addKnownIncident(QueuedIncident qi)
     {
-        bool FindIncident(QueuedIncident a)
-        {
-            return a.FireTick == qi.FireTick && a.FiringIncident.def.shortHash == qi.FiringIncident.def.shortHash;
-        }
-
-        if (knownIncidents.Find(FindIncident) != null)
+        if (knownIncidents.Find(findIncident) != null)
         {
             return false;
         }
@@ -58,9 +52,14 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
         }
 
         return true;
+
+        bool findIncident(QueuedIncident a)
+        {
+            return a.FireTick == qi.FireTick && a.FiringIncident.def.shortHash == qi.FiringIncident.def.shortHash;
+        }
     }
 
-    private void RemoveCompletedIncidentsFromKnown()
+    private void removeCompletedIncidentsFromKnown()
     {
         var startSize = knownIncidents.Count;
 
@@ -77,17 +76,13 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
     {
         var settings = CrystalBallStatic.currMod.GetSettings<CrystalBallSettings>();
 
-        var tickDelay = Rand.RangeInclusive(settings.medianDelayTime - settings.delayTimeFudgeWindow,
-            settings.medianDelayTime + settings.delayTimeFudgeWindow);
+        var tickDelay = Rand.RangeInclusive(settings.MedianDelayTime - settings.DelayTimeFudgeWindow,
+            settings.MedianDelayTime + settings.DelayTimeFudgeWindow);
 
         if (tickDelay < 0 || !warningsActivated)
         {
             tickDelay = 0;
         }
-
-#if DEBUG
-            Log.Message(String.Format("Adding incident TickDelay={0}", tickDelay));
-#endif
 
         if (specialIncidents.ContainsKey(fi.def.workerClass.ToString()))
         {
@@ -101,7 +96,7 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
 
         var currTick = Find.TickManager.TicksGame;
         var fireTick = currTick + tickDelay;
-        var retryDuration = 5000;
+        const int retryDuration = 5000;
 
         warnedIncidents.Add(fi.def, fireTick, fi.parms, retryDuration);
 
@@ -117,11 +112,11 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
     {
         isFiringEvents = true;
         warnedIncidents.IncidentQueueTick();
-        RemoveCompletedIncidentsFromKnown();
+        removeCompletedIncidentsFromKnown();
         isFiringEvents = false;
     }
 
-    private void GetEventsInQueue(out List<QueuedIncident> events)
+    private void getEventsInQueue(out List<QueuedIncident> events)
     {
         events = [];
 
@@ -133,12 +128,7 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
 
     public void PredictEvents(float predictionStrength, int maxNumPredictions)
     {
-#if DEBUG
-            Log.Message(String.Format("Predicting with strength={0}, num={1}", predictionStrength, maxNumPredictions));
-#endif
-
-
-        GetEventsInQueue(out var incidentList);
+        getEventsInQueue(out var incidentList);
         incidentList.Shuffle();
 
         var count = 0;
@@ -153,7 +143,7 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
 
             Log.Message($"Prediction Success strength={predictionStrength}");
 
-            if (AddKnownIncident(qi))
+            if (addKnownIncident(qi))
             {
                 Log.Message($"Added Incident {qi.FiringIncident.def.defName}");
 

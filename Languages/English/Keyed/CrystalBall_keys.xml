@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <!-- ITab titles -->
   <CB.TabPredictions>Predictions</CB.TabPredictions>
@@ -6,5 +6,10 @@
   <CB.ModVersion>Installed mod-version: {0}</CB.ModVersion>
   <CB.DelayTime>Delay Time Fudge Window</CB.DelayTime>
   <CB.RechargeTime>Time For Crystal Balls to Recharge</CB.RechargeTime>
-  <CB.Multiplyer>Multipler for the speed to scry a crystal ball</CB.Multiplyer>
+  <CB.Multiplyer>Multiplier for the speed to scry a crystal ball</CB.Multiplyer>
+  <CB.Ready>Crystal ball is recharged and ready for use.</CB.Ready>
+  <CB.Process>Progress scrying into the future: {0}%</CB.Process>
+  <CB.NoSensitivity>Cannot use. Not enough intellectual and psychic sensitivity.</CB.NoSensitivity>
+  <CB.NotCharged>Cannot use. Still recharging.</CB.NotCharged>
+  <CB.RechargingPeriod>Crystal ball is recharging psychic energy: {0} until complete.</CB.RechargingPeriod>
 </LanguageData>

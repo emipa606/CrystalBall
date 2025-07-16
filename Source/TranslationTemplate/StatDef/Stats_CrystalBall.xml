@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Prediction Count -->
+  <StatDef_PredictionCount.label>Prediction Count</StatDef_PredictionCount.label>
+  <!-- EN: Max number of future incident predictions that can be made per scry. -->
+  <StatDef_PredictionCount.description>Max number of future incident predictions that can be made per scry.</StatDef_PredictionCount.description>
+  <!-- EN: Scry Ability -->
+  <StatDef_Scry.label>Scry Ability</StatDef_Scry.label>
+  <!-- EN: Ability to see into the future with a Crystal Ball. -->
+  <StatDef_Scry.description>Ability to see into the future with a Crystal Ball.</StatDef_Scry.description>
+</LanguageData>

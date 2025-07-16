@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Crystal Ball Table -->
+  <ThingDef_CrystalBallTable.label>Crystal Ball Table</ThingDef_CrystalBallTable.label>
+  <!-- EN: A small table with a Crystal Ball. It can be used to see into the future and predict future events. -->
+  <ThingDef_CrystalBallTable.description>A small table with a Crystal Ball. It can be used to see into the future and predict future events.</ThingDef_CrystalBallTable.description>
+</LanguageData>

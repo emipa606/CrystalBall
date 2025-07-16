@@ -28,7 +28,7 @@ internal class WorkGiver_CrystalBall : WorkGiver_Scanner
             return false;
         }
 
-        return t is Building_CrystalBallTable crystalBall && crystalBall.isReadyForScrying();
+        return t is Building_CrystalBallTable crystalBall && crystalBall.IsReadyForScrying();
     }
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)

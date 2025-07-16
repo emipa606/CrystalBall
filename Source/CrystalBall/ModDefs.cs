@@ -18,9 +18,4 @@ public static class ModDefs
     {
         DefOfHelper.EnsureInitializedInCtor(typeof(ModDefs));
     }
-
-
-    //public static StatDef ScryAbility = DefDatabase<StatDef>.GetNamed("Stat_ScryAbility");
-    //public static EffecterDef ScryEffect = DefDatabase<EffecterDef>.GetNamed("Effect_ScryEffect");
-    //public static ThingDef CrystalBallTable = DefDatabase<ThingDef>.GetNamed("Building_CrystalBallTable");
 }

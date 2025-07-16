@@ -16,9 +16,6 @@ public class CrystalBallMod : Mod
         settings = GetSettings<CrystalBallSettings>();
         currentVersion =
             VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
-#if DEBUG
-            Log.Message("CrystalBallMode Initialized");
-#endif
     }
 
 
@@ -28,16 +25,16 @@ public class CrystalBallMod : Mod
         listingStandard.Begin(inRect);
 
         listingStandard.Label("CB.Median".Translate());
-        listingStandard.IntEntry(ref settings.medianDelayTime, ref settings.medianDelayEntryBuffer);
+        listingStandard.IntEntry(ref settings.MedianDelayTime, ref settings.MedianDelayEntryBuffer);
 
         listingStandard.Label("CB.DelayTime".Translate());
-        listingStandard.IntEntry(ref settings.delayTimeFudgeWindow, ref settings.fudgeWindowEntryBuffer);
+        listingStandard.IntEntry(ref settings.DelayTimeFudgeWindow, ref settings.FudgeWindowEntryBuffer);
 
         listingStandard.Label("CB.RechargeTime".Translate());
-        listingStandard.IntEntry(ref settings.crystalBallRechargeTime, ref settings.rechargeTimeEntryBuffer);
+        listingStandard.IntEntry(ref settings.CrystalBallRechargeTime, ref settings.RechargeTimeEntryBuffer);
 
         listingStandard.Label("CB.Multiplyer".Translate());
-        listingStandard.TextFieldNumeric(ref settings.scrySpeedFactor, ref settings.scrySpeedEntryBuffer, 0.0f,
+        listingStandard.TextFieldNumeric(ref settings.ScrySpeedFactor, ref settings.ScrySpeedEntryBuffer, 0.0f,
             10.0f);
         if (currentVersion != null)
         {
