@@ -37,7 +37,7 @@ public class Building_CrystalBallTable : Building
         return progress / scryWorkAmount;
     }
 
-    public void PerformScryWork(float scryingAbility, float predictionCount)
+    public void PerformScryWork(float scryingAbility, float predictionCount, int delta)
     {
         var settings = CrystalBallStatic.currMod.GetSettings<CrystalBallSettings>();
 
@@ -51,7 +51,7 @@ public class Building_CrystalBallTable : Building
         {
             if (scryingAbility > 0.0f)
             {
-                var progressTick = scryWorkTickAmount * scryingAbility * settings.ScrySpeedFactor;
+                var progressTick = scryWorkTickAmount * scryingAbility * settings.ScrySpeedFactor * delta;
                 progress += progressTick;
 
                 var tickFactor = progressTick / scryWorkAmount;

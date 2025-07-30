@@ -8,4 +8,9 @@
   <CB.DelayTime>Temps de retard Fenêtre d'ajustement</CB.DelayTime>
   <CB.RechargeTime>Il est temps de recharger les boules de cristal</CB.RechargeTime>
   <CB.Multiplyer>Multiplieur pour la vitesse de lecture d'une boule de cristal</CB.Multiplyer>
+  <CB.Ready>La boule de cristal est rechargée et prête à être utilisée.</CB.Ready>
+  <CB.Process>Progrès dans l'exploration de l'avenir : {0}%</CB.Process>
+  <CB.NoSensitivity>Ne peut pas être utilisé. Pas assez de sensibilité intellectuelle et psychique.</CB.NoSensitivity>
+  <CB.NotCharged>Impossible à utiliser. Toujours en train de se recharger.</CB.NotCharged>
+  <CB.RechargingPeriod>La boule de cristal recharge l'énergie psychique : {0} jusqu'à ce qu'elle soit complète.</CB.RechargingPeriod>
 </LanguageData>

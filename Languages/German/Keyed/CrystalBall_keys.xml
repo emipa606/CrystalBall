@@ -8,4 +8,9 @@
   <CB.DelayTime>Verzögerungszeit Fudge Window</CB.DelayTime>
   <CB.RechargeTime>Zeit für Kristallkugeln zum Aufladen</CB.RechargeTime>
   <CB.Multiplyer>Multipler für die Geschwindigkeit, eine Kristallkugel zu deuten</CB.Multiplyer>
+  <CB.Ready>Kristallkugel ist wieder aufgeladen und einsatzbereit.</CB.Ready>
+  <CB.Process>Fortschritte beim Scrying in die Zukunft: {0}%</CB.Process>
+  <CB.NoSensitivity>Kann nicht verwendet werden. Nicht genug intellektuelle und psychische Sensibilität.</CB.NoSensitivity>
+  <CB.NotCharged>Kann nicht benutzt werden. Wird noch aufgeladen.</CB.NotCharged>
+  <CB.RechargingPeriod>Die Kristallkugel lädt psychische Energie auf: {0} bis zur Fertigstellung.</CB.RechargingPeriod>
 </LanguageData>

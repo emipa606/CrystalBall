@@ -8,4 +8,9 @@
   <CB.DelayTime>延迟时间微调窗口</CB.DelayTime>
   <CB.RechargeTime>水晶球充电时间</CB.RechargeTime>
   <CB.Multiplyer>扫描水晶球速度的倍增器</CB.Multiplyer>
+  <CB.Ready>水晶球充电完毕，可以使用。</CB.Ready>
+  <CB.Process>窥探未来的进展：{0}%</CB.Process>
+  <CB.NoSensitivity>不能使用。智力和灵敏度不够。</CB.NoSensitivity>
+  <CB.NotCharged>无法使用。仍在充电。</CB.NotCharged>
+  <CB.RechargingPeriod>水晶球正在补充精神能量：{0}直至完成。</CB.RechargingPeriod>
 </LanguageData>

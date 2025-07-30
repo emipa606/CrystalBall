@@ -26,9 +26,9 @@ internal class JobDriver_ScryCrystalBall : JobDriver
             var predictionCount = actor.GetStatValue(ModDefs.StatDef_PredictionCount);
 
             var crystalBall = crystalBallTable;
-            crystalBall.PerformScryWork(scryAbility, predictionCount);
+            crystalBall.PerformScryWork(scryAbility, predictionCount, delta);
 
-            actor.skills.Learn(SkillDefOf.Intellectual, 0.01f);
+            actor.skills.Learn(SkillDefOf.Intellectual, 0.01f * delta);
             actor.GainComfortFromCellIfPossible(delta, true);
         };
         scry.FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
