@@ -6,4 +6,31 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="Crystalball/Crystalball.csproj" />
+  <Folder Name="/XML/1.7/Defs/JobDefs/">
+    <File Path="../1.7/Defs/JobDefs/Jobs_CrystalBall.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/Stats/">
+    <File Path="../1.7/Defs/Stats/Stats_CrystalBall.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/Effects/">
+    <File Path="../1.7/Defs/Effects/Effecter_CrystalBall.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/">
+    <File Path="../1.7/Defs/CrystalBall.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/WorkGiverDefs/">
+    <File Path="../1.7/Defs/WorkGiverDefs/WorkGiver_CrystalBall.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/CrystalBall_keys.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/WorkTypeDefs/">
+    <File Path="../1.7/Defs/WorkTypeDefs/WorkTypes_CrystalBall.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/ThingDefs/">
+    <File Path="../1.7/Defs/ThingDefs/Building_CrysatalBall.xml" />
+  </Folder>
 </Solution>

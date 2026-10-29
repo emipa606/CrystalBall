@@ -47,18 +47,15 @@ public class Building_CrystalBallTable : Building
                 true; //One time flag, so incidents behave as normal if the crystal ball is never used.
         }
 
-        if (recharged)
+        if (recharged && scryingAbility > 0.0f)
         {
-            if (scryingAbility > 0.0f)
-            {
-                var progressTick = scryWorkTickAmount * scryingAbility * settings.ScrySpeedFactor * delta;
-                progress += progressTick;
+            var progressTick = scryWorkTickAmount * scryingAbility * settings.ScrySpeedFactor * delta;
+            progress += progressTick;
 
-                var tickFactor = progressTick / scryWorkAmount;
+            var tickFactor = progressTick / scryWorkAmount;
 
-                accumulatedScryAbility += scryingAbility * tickFactor;
-                accumulatedPredictionCount += predictionCount * tickFactor;
-            }
+            accumulatedScryAbility += scryingAbility * tickFactor;
+            accumulatedPredictionCount += predictionCount * tickFactor;
         }
 
 
@@ -124,19 +121,19 @@ public class Building_CrystalBallTable : Building
     }
 
 
-    public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
+    public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
     {
-        foreach (var floatMenuOption in base.GetFloatMenuOptions(myPawn))
+        foreach (var floatMenuOption in base.GetFloatMenuOptions(selPawn))
         {
             yield return floatMenuOption;
         }
 
-        if (!myPawn.RaceProps.Humanlike)
+        if (!selPawn.RaceProps.Humanlike)
         {
             yield break;
         }
 
-        var scryAbility = myPawn.GetStatValue(ModDefs.StatDef_Scry);
+        var scryAbility = selPawn.GetStatValue(ModDefs.StatDef_Scry);
 
         if (scryAbility < 0.1f) //Make sure this number matches the work giver check
         {

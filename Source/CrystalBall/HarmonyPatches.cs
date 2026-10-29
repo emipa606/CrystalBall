@@ -25,8 +25,6 @@ public static class HarmonyPatches
             new HarmonyMethod(patchType, nameof(StoryTellerTickPrefix)),
             new HarmonyMethod(patchType, nameof(StoryTellerTickPostfix))
         );
-
-        //harmony.PatchAll();
     }
 
 

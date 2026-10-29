@@ -46,10 +46,8 @@ public class WarnedIncidentQueueWorldComponent : WorldComponent
             return false;
         }
 
-        {
-            knownIncidents.Add(qi);
-            knownIncidents.Sort((a, b) => a.FireTick.CompareTo(b.FireTick));
-        }
+        knownIncidents.Add(qi);
+        knownIncidents.Sort((a, b) => a.FireTick.CompareTo(b.FireTick));
 
         return true;
 

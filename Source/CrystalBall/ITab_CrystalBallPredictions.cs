@@ -60,7 +60,7 @@ internal class ITab_CrystalBallPredictions : ITab
         Text.Anchor = TextAnchor.UpperLeft;
     }
 
-    private void DrawKnownIncidentList(ref float y, float width)
+    private static void DrawKnownIncidentList(ref float y, float width)
     {
         var warnedIncidentQueue = Find.World.GetComponent<WarnedIncidentQueueWorldComponent>();
 

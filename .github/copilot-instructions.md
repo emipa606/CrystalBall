@@ -1,64 +1,110 @@
-# GitHub Copilot Instructions for RimWorld Modding Project
+# GitHub Copilot Instructions for RimWorld Modding - CrystalBall (Continued)
+
+Welcome to the CrystalBall mod development project! This mod allows colonists to scry into the future, preparing for future incidents. Below are detailed instructions and guidelines to help you effectively use GitHub Copilot for developing this mod.
 
 ## Mod Overview and Purpose
-The "Crystal Ball" mod for RimWorld introduces an enchanting new feature to the game world, allowing players to engage in scrying activities using a mystical crystal ball. The pinnacle of this mod is the `Building_CrystalBallTable`, where pawns can predict future events, potentially altering the course of gameplay by providing forewarning of upcoming incidents.
+
+**Mod Name:** CrystalBall (Continued)  
+**Author:** The Pickle  
+**Package ID:** Mlie.CrystalBall  
+**Mod Description:** Update of The Pickles mod  
+- Creates a crystal ball that pawns can use to scry into the future  
+- Helps prepare for future incidents without delaying any quest-related incidents  
 
 ## Key Features and Systems
 
-- **Scrying Mechanics**: 
-  - The `Building_CrystalBallTable` class handles the core scry functions with methods such as `GetCurrentProgress()`, `PerformScryWork()`, and `isReadyForScrying()`.
-  - The `JobDriver_ScryCrystalBall` class facilitates the execution of the scrying job by pawns.
-
-- **Incident Prediction and Management**:
-  - `WarnedIncidentQueueWorldComponent` manages a queue of predicted events, offering methods for adding, removing, and ticking incidents.
-
-- **User Interface**:
-  - The `ITab_CrystalBallPredictions` class adds an interface tab that lets players see predicted incidents via `DrawKnownIncidentList()`.
+- **Crystal Ball Table:** Created via the Production tab using Jade resources  
+- **Scry Work:** Colonists can scry into the future; influenced by Intellectual and Psychic Sensitivity  
+- **Incident Delay:** Delays future incidents by a random interval, compatible with Storytellers  
+- **Mod Settings:** Adjust incident delays and scry frequency  
+- **Compatibility:** May have compatibility issues with other mods affecting incident triggers
 
 ## Coding Patterns and Conventions
 
-- **Class Naming**: 
-  - Classes are named with a clear purpose, directly indicating their role. For instance, `Building_CrystalBallTable` and `ITab_CrystalBallPredictions`.
-
-- **Method Naming**:
-  - Methods are verb-based, descriptive of their function: `AddKnownIncident()`, `PerformScryWork()`, `PredictEvents()`, etc.
-
-- **Access Modifiers**:
-  - Ensure correct usage of `public`, `internal`, and `private` to control access where necessary.
-
-- **Event-driven Programming**:
-  - Utilize specific methods in classes like `WarnedIncidentQueueWorldComponent` to respond to game world events efficiently.
+- **C# File Structure:** Follow a clear and organized structure, separating logic into different classes as needed.
+- **Naming Conventions:** Use PascalCase for class names and camelCase for method names.
+- **Comments and Documentation:** Write clear comments and documentation to explain complex logic or important changes.
+- **Error Handling:** Implement robust error handling to prevent crashes and unexpected behavior.
 
 ## XML Integration
 
-While there isn't explicit XML content summarized here, a typical process includes:
+- **XML Files:** Use XML files to define game objects, effects, job definitions, stats, and thing definitions.
+- **Consistent Formatting:** Maintain consistent formatting for XML tags and attributes.
+- **Validation:** Ensure XML files are validated against RimWorld's XML schema to prevent loading errors.
 
-- **Defining new objects and jobs** in XML files using `<Defs>` sections.
-- **Integrating C# code** with XML by matching method functionality to XML tags such as `<WorkGiver>`, `<Job>`, and defining related criteria.
+### Example XML File
+
+**Building_CrystalBall.xml:**
+xml
+<ThingDef ParentName="Building" Name="CrystalBallTable">
+    <label>Crystal Ball Table</label>
+    <description>A table used by colonists to scry into the future.</description>
+    <defName>CrystalBallTable</defName>
+    <category>Building</category>
+    <thingCategories>
+        <li>Building</li>
+        <li>Table</li>
+    </thingCategories>
+    <statBases>
+        <WorkToBuild>100</WorkToBuild>
+    </statBases>
+    <costList>
+        <li>Resource=Jade;Count=20</li>
+    </costList>
+    <workGiverDefs>
+        <li>WorkGiver_CrystalBall</li>
+    </workGiverDefs>
+</ThingDef>
+
 
 ## Harmony Patching
 
-- **HarmonyPatches Class**: 
-  - This class should host all Harmony patches necessary to modify the existing game logic non-destructively. Follow principles of being minimally invasive, focusing on `Postfix`, `Prefix`, `Transpilers`, and `Finalizer` as needed.
-  
-- **Best Practices**: 
-  - Use Harmony to hook into methods where mod functionality needs to change or extend base game behavior without altering core files.
+- **Harmony Library:** Utilize the Harmony library to patch existing RimWorld methods without modifying the original codebase.
+- **Patch Structure:** Follow a clear structure for Harmony patches, including prefix, postfix, transpiler, etc.
+- **Naming Conventions:** Use descriptive names for patch methods to indicate their purpose.
+
+### Example Harmony Patch
+
+**CrystalBall.cs:**
+csharp
+using HarmonyLib;
+
+public class CrystalBall
+{
+    [HarmonyPatch(typeof(IncidentWorker), nameof(IncidentWorker.TryExecute))]
+    public static class IncidentWorker_TryExecute_Patch
+    {
+        public static void Prefix(IncidentWorker __instance, IncidentParms parms)
+        {
+            // Implement logic to delay incidents
+        }
+    }
+}
+
 
 ## Suggestions for Copilot
 
-1. **Generate Code Stubs**:
-   - Use Copilot to create initial stubs for methods and classes by entering descriptive comments.
+- **Code Completion:** Use Copilot to complete code snippets, especially for repetitive tasks like defining XML elements or implementing Harmony patches.
+- **Documentation:** Let Copilot generate documentation comments for your classes and methods to ensure clarity and maintainability.
+- **Error Handling:** Use Copilot to suggest error handling code, such as try-catch blocks, to prevent unexpected behavior.
+- **Refactoring:** Use Copilot to refactor existing code, such as improving method readability or optimizing logic.
 
-2. **XML Code Generation**:
-   - Prompt generation of XML snippets based on C# code components for seamless integration between XML definitions and C# methods.
+## Conclusion
 
-3. **Harmony Integration**:
-   - Suggest full Harmony hooks by starting patterns with `Harmony.PatchAll()` or targeting specific methods using `var harmonyInstance = new Harmony("modname.id");`.
+By following these guidelines and utilizing GitHub Copilot effectively, you can enhance your development process and create a robust and user-friendly mod for RimWorld. Happy coding!
 
-4. **Fixing Common Bugs**:
-   - Utilize Copilot to catch and suggest fixes for common issues like incorrect type casting or off-by-one errors in loops.
+## Project Solution Guidelines
+- Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
+- Use these in-solution XML files as the primary files for reference and modification.
+- The `.github/copilot-instructions.md` file is included in the solution under the `.github` solution folder, so it should be read/modified from within the solution instead of using paths outside the solution. Update this file once only, as it and the parent-path solution reference point to the same file in this workspace.
+- When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
+- In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
+- For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
 
-5. **Interface Elements**:
-   - Draft new UI components and integrate these with game logic using class methods with Copilot’s assistance.
 
-With adherence to these guidelines and strategic use of GitHub Copilot, the development and enhancement of the "Crystal Ball" mod should be a seamless and efficient process.
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
+
